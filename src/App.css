@@ -53,18 +53,37 @@ a {
 }
 .Main-Conteiner {
   display: flex;
+  flex-direction: column;
   width: 500px;
   height: 500px;
   background: linear-gradient(56deg, rgba(248,184,41) 0%, rgba(226,141,23,1) 100%);
   border-radius: 25px;
-  justify-content: center;
+ 
   
 }
-
+.Main-Conteiner-Nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  align-items: flex-start;
+}
+.nav {
+ width: 100%;
+ align-items: flex-start;
+}
 .title {
   font-family: Inter;
   padding-top: 1em;
   color: rgb(32, 60, 61);
   text-align: center;
+}
+.home {
+  text-align: center;
+  padding-top: 150px;
+}
+.home-title {
+  font-family: Inter;
+  font-size: 45px;
+  color: rgb(32, 60, 61);;
 }
 
