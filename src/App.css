@@ -34,7 +34,7 @@ a {
   background-color: rgb(196, 96, 3);
   color: rgb(32, 60, 61);
   font-family: Inter;
-  width: 50px;
+  width: 60px;
   height: 25px;
   text-align: center;
   border-radius: 5px;
@@ -54,8 +54,8 @@ a {
 .Main-Conteiner {
   display: flex;
   flex-direction: column;
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 550px;
   background: linear-gradient(56deg, rgba(248,184,41) 0%, rgba(226,141,23,1) 100%);
   border-radius: 25px;
  
@@ -67,6 +67,14 @@ a {
   width: 100%;
   align-items: flex-start;
 }
+.Main-Conteiner-note {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  height: 550px;
+  background: linear-gradient(56deg, rgba(248,184,41) 0%, rgba(226,141,23,1) 100%);
+  border-radius: 25px;
+}
 .nav {
  width: 100%;
  align-items: flex-start;
@@ -76,6 +84,14 @@ a {
   padding-top: 1em;
   color: rgb(32, 60, 61);
   text-align: center;
+}
+.note-title {
+  font-family: Inter;
+  font-size: 45px;
+  color: rgb(32, 60, 61);
+  text-align: center;
+  height: 100%;
+  margin-top: 44%;
 }
 .home {
   text-align: center;

@@ -50,7 +50,7 @@ export default function Home(){
             </div>
             
             <div className="home">
-                <p className="home-title">Choose your day</p>
+                <input type="text" />
             </div>
         </div>
          <div className="Main-Conteiner-note">
