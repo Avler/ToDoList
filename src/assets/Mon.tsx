@@ -1,19 +1,37 @@
+import { BlobOptions } from "buffer"
 import { useState } from "react"
 import {  Link} from "react-router-dom"
 import {Days} from "./Day1"
 
 export default function Home(){
     const [selday , setselDay] = useState(Days)
-
-    
+    const [firstTask , setFirstTask] = useState(false)
+    const [monday , setMonday] = useState()
    
+    
+    const changeData = (event)=> {
+      setMonday(event.target.value)
+      
+    }
+    
+    const saveData = () => {
+        taskData.push(monday)
+       firstTask ? setFirstTask(true) : setFirstTask(x => !x) 
+    }
+    let taskData = []
+    
+    
+    const Taskname = taskData.forEach( elem => {
+        return <p>{elem}</p>
+    })
+
     let x:boolean 
    selday.map(ele => x = ele.checked)
    
    const handleDay = () => {
     if(x === true) {
         return
-    }
+    }   
     else {
 
     }
@@ -32,7 +50,7 @@ export default function Home(){
         return elem.id === id ? {...elem , selected:select , } : {...elem , selected:false}
      }))
     }
-
+    
   const Allday = selday.map(element => { 
 
     return <li className={element.selected ? "day-btn-selected": "day-btn"} onClick={() => sel(element.id)}><Link  to="/day1">{element.name}</Link></li>
@@ -52,7 +70,7 @@ export default function Home(){
             <div className="home">
                 <div>
                     <p className="name-task">Name of Task</p>
-                    <input type="text" className="task-input" placeholder="Task"/>
+                    <input type="text" className="task-input" placeholder="Task" onChange={changeData}/>
                 </div>
                 <div>
                     <p className="name-time">What time ?</p>
@@ -82,10 +100,24 @@ export default function Home(){
                 <p className="name-category">Task Description</p>
                 <textarea placeholder="Description of the Task" className="text-area-task"></textarea>
             </div>
-            <button className="task-btn">Add Task</button>
+            <button className="task-btn" onClick={saveData}>Add Task</button>
         </div>
          <div className="Main-Conteiner-note">
-            <p className="note-title">Add your first task </p>
+          
+           { firstTask ? 
+           <div>
+                <div className="note-category-cont">
+                    <p className="note-catergory-name">Task Name</p>
+                    <p className="note-catergory-name">Catergory</p>
+                    <p className="note-catergory-name">Time</p>
+                    
+                </div>
+                {Taskname}
+
+           </div> 
+           : 
+           <p className="note-title">Add your first task </p>}
+           
          </div>
          </>
     )

@@ -180,3 +180,12 @@ a {
   color: rgb(32, 60, 61);
   background-color: rgb(38, 128, 131);
 }
+.note-category-cont {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 20px;
+  color: rgb(32, 60, 61);
+  font-family: Inter;
+}
