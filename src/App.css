@@ -31,13 +31,14 @@ a {
 }
 .day-btn {
   text-decoration: none;
-  background-color: rgb(196, 96, 3);
+  background-color: rgb(38, 128, 131);
   color: rgb(32, 60, 61);
   font-family: Inter;
   width: 60px;
-  height: 25px;
+  height: 30px;
   text-align: center;
   border-radius: 5px;
+  padding-top: 5px;
 }
 
 
@@ -46,10 +47,11 @@ a {
   text-decoration: none;
   color: rgb(32, 60, 61);
   font-family: Inter;
-  width: 50px;
-  height: 25px;
+  width: 60px;
+  height: 30px;
   text-align: center;
   border-radius: 5px;
+  padding-top: 5px;
 }
 .Main-Conteiner {
   display: flex;
@@ -95,11 +97,86 @@ a {
 }
 .home {
   text-align: center;
-  padding-top: 150px;
+  padding-top: 40px;
+  display: flex;
 }
 .home-title {
   font-family: Inter;
   font-size: 45px;
   color: rgb(32, 60, 61);;
+  padding-top: 150px;
+  width: 100%;
 }
-
+.task-input {
+ height: 40px;
+ border-radius: 5px;
+ border: none;
+ outline: none;
+ font-size: 20px;
+ margin-left: 50px;
+ padding-left: 10px;
+}
+.name-task {
+  color: rgb(32, 60, 61);
+  font-size: 20px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+.time-input {
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  margin-left: 50px;
+  padding-left: 10px;
+  width: 80px;
+ }
+ .name-time {
+  color: rgb(32, 60, 61);
+  font-size: 20px;
+  padding-bottom: 5px;
+  padding-left: 50px;
+}
+.name-category {
+  text-align: center;
+  padding-top: 20px;
+  color: rgb(32, 60, 61);
+  font-size: 30px;
+}
+.list-category {
+  display: flex;
+  gap: 25px;
+  text-decoration: none;
+  list-style-type: none;
+  justify-content: center;
+  padding-top: 10px;
+  font-size: 20px;
+  color: rgb(32, 60, 61);
+}
+.name-item{
+  padding-left: 10px;
+}
+.text-area-task {
+ width: 450px;
+ outline: none;
+ border: none;
+ border-radius: 5px;
+ margin-left: 50px;
+ margin-top: 20px;
+ padding-left: 10px;
+ padding-top: 10px;
+ justify-content: center;
+ height: 100px;
+ resize: none;
+}
+.task-btn{
+  width: 140px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin: auto;
+  color: rgb(32, 60, 61);
+  background-color: rgb(38, 128, 131);
+}

@@ -50,11 +50,42 @@ export default function Home(){
             </div>
             
             <div className="home">
-                <input type="text" />
+                <div>
+                    <p className="name-task">Name of Task</p>
+                    <input type="text" className="task-input" placeholder="Task"/>
+                </div>
+                <div>
+                    <p className="name-time">What time ?</p>
+                    <input type="text" className="time-input" placeholder="Time"/>
+                    
+                </div>
             </div>
+            <p className="name-category">Select the Category</p>
+            <div>
+                <ul className="list-category">
+                    <li className="item-catergory">
+                        <input type="radio" value="work" name="category" />
+                        <label htmlFor="category-work" className="name-item">Work</label>
+                    </li>
+                    <li className="item-catergory">
+                        <input type="radio" value="hobby" name="category" />
+                        <label htmlFor="category-hobby" className="name-item">Hobby</label>
+                    </li>
+                    <li className="item-catergory">
+                        <input type="radio" value="home" name="category" />
+                        <label htmlFor="category-home" className="name-item">Home</label>
+                    </li>
+                </ul>
+                
+            </div>
+            <div>
+                <p className="name-category">Task Description</p>
+                <textarea placeholder="Description of the Task" className="text-area-task"></textarea>
+            </div>
+            <button className="task-btn">Add Task</button>
         </div>
          <div className="Main-Conteiner-note">
-            <p className="note-title">Make your plan </p>
+            <p className="note-title">Add your first task </p>
          </div>
          </>
     )
