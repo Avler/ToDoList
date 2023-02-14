@@ -1,29 +1,24 @@
-import { BlobOptions } from "buffer"
-import { useState } from "react"
+
+import { useState , useRef } from "react"
 import {  Link} from "react-router-dom"
 import {Days} from "./Day1"
 
 export default function Home(){
     const [selday , setselDay] = useState(Days)
     const [firstTask , setFirstTask] = useState(false)
-    const [monday , setMonday] = useState()
+    const [monday , setMonday] = useState([])
    
-    
-    const changeData = (event)=> {
-      setMonday(event.target.value)
-      
+    const nameRef = useRef(null)
+    let xy = []
+    const changeData = ()=> {
+      setMonday(nameRef.current.value)
+      const push = () => {
+        xy.push(monday)
+      }
+      push()
     }
     
-    const saveData = () => {
-        taskData.push(monday)
-       firstTask ? setFirstTask(true) : setFirstTask(x => !x) 
-    }
-    let taskData = []
-    
-    
-    const Taskname = taskData.forEach( elem => {
-        return <p>{elem}</p>
-    })
+   console.log(xy)
 
     let x:boolean 
    selday.map(ele => x = ele.checked)
@@ -63,6 +58,7 @@ export default function Home(){
                     <h1 className="title">To Do List</h1>
                     <ul className="day-links">
                         {Allday}
+                        
                     </ul>
                 </nav>
             </div>
@@ -70,7 +66,7 @@ export default function Home(){
             <div className="home">
                 <div>
                     <p className="name-task">Name of Task</p>
-                    <input type="text" className="task-input" placeholder="Task" onChange={changeData}/>
+                    <input type="text" className="task-input" placeholder="Task" ref={nameRef}/>
                 </div>
                 <div>
                     <p className="name-time">What time ?</p>
@@ -100,7 +96,8 @@ export default function Home(){
                 <p className="name-category">Task Description</p>
                 <textarea placeholder="Description of the Task" className="text-area-task"></textarea>
             </div>
-            <button className="task-btn" onClick={saveData}>Add Task</button>
+            <button className="task-btn" onClick={changeData} >Add Task</button>
+            
         </div>
          <div className="Main-Conteiner-note">
           
@@ -112,7 +109,7 @@ export default function Home(){
                     <p className="note-catergory-name">Time</p>
                     
                 </div>
-                {Taskname}
+                
 
            </div> 
            : 
