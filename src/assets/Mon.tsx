@@ -12,13 +12,13 @@ export default function Home(){
     let xy = []
     const changeData = ()=> {
       setMonday(nameRef.current.value)
-      const push = () => {
-        xy.push(monday)
-      }
-      push()
+      setFirstTask(true)
+      xy.push(nameRef.current.value)
+      console.log(xy)
     }
     
-   console.log(xy)
+   console.log(monday)
+   
 
     let x:boolean 
    selday.map(ele => x = ele.checked)
@@ -110,7 +110,7 @@ export default function Home(){
                     
                 </div>
                 
-
+                {monday}
            </div> 
            : 
            <p className="note-title">Add your first task </p>}
