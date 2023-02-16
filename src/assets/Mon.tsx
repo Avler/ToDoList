@@ -1,20 +1,51 @@
 
-import { useState , useRef } from "react"
+import { useState , useRef, useEffect} from "react"
 import {  Link} from "react-router-dom"
 import {Days} from "./Day1"
+
+interface Task {
+    nameTask: string;
+    time: number ;
+    category: string;
+    description: string;
+}
 
 export default function Home(){
     const [selday , setselDay] = useState(Days)
     const [firstTask , setFirstTask] = useState(false)
-    const [monday , setMonday] = useState([])
+    const [monday , setMonday] = useState<Task[]>([])
    
-    const nameRef = useRef(null)
-    let xy = []
-    const changeData = ()=> {
-      setMonday(nameRef.current.value)
-      setFirstTask(true)
-      xy.push(nameRef.current.value)
-      console.log(xy)
+    const nameRef = useRef<HTMLInputElement>(null)    
+    const timeRef = useRef<HTMLInputElement>(null)    
+    const categoryRef = useRef<HTMLInputElement>(null)    
+    const descriptionRef = useRef<HTMLInputElement>(null)    
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(monday));
+    }, [monday]);   
+    
+    
+  
+    const changeData = ()=> {  
+          
+            const nameTask =  String(nameRef.current?.value);
+            const time = Number(timeRef.current?.value);
+            const category = String(categoryRef.current?.value);
+            const description = String(descriptionRef.current?.value); 
+
+        setMonday(
+            [ ...monday,   {
+                nameTask: nameTask,
+                time:   time,
+                category: category,
+                description: description,
+             },
+            ] )
+       
+        setFirstTask(true)
+       
     }
     
    console.log(monday)
@@ -23,14 +54,7 @@ export default function Home(){
     let x:boolean 
    selday.map(ele => x = ele.checked)
    
-   const handleDay = () => {
-    if(x === true) {
-        return
-    }   
-    else {
-
-    }
-   }
+   
    
     const sel = (id:number | string) => {
      let select:boolean 
@@ -66,11 +90,11 @@ export default function Home(){
             <div className="home">
                 <div>
                     <p className="name-task">Name of Task</p>
-                    <input type="text" className="task-input" placeholder="Task" ref={nameRef}/>
+                    <input type="text" className="task-input"  placeholder="Task" ref={nameRef}/>
                 </div>
                 <div>
                     <p className="name-time">What time ?</p>
-                    <input type="text" className="time-input" placeholder="Time"/>
+                    <input type="number" className="time-input" ref={timeRef} placeholder="Time"/>
                     
                 </div>
             </div>
@@ -78,15 +102,15 @@ export default function Home(){
             <div>
                 <ul className="list-category">
                     <li className="item-catergory">
-                        <input type="radio" value="work" name="category" />
-                        <label htmlFor="category-work" className="name-item">Work</label>
+                        <input type="radio" value="work" ref={categoryRef }/>
+                        <label htmlFor="category-work" className="name-item" >Work</label>
                     </li>
                     <li className="item-catergory">
-                        <input type="radio" value="hobby" name="category" />
+                        <input type="radio" value="hobby" ref={categoryRef } />
                         <label htmlFor="category-hobby" className="name-item">Hobby</label>
                     </li>
                     <li className="item-catergory">
-                        <input type="radio" value="home" name="category" />
+                        <input type="radio" value="home" ref={categoryRef } />
                         <label htmlFor="category-home" className="name-item">Home</label>
                     </li>
                 </ul>
@@ -94,8 +118,8 @@ export default function Home(){
             </div>
             <div>
                 <p className="name-category">Task Description</p>
-                <textarea placeholder="Description of the Task" className="text-area-task"></textarea>
-            </div>
+                <input placeholder="Description of the Task" className="text-area-task" ref={descriptionRef}></input>
+            </div>  
             <button className="task-btn" onClick={changeData} >Add Task</button>
             
         </div>
@@ -110,7 +134,7 @@ export default function Home(){
                     
                 </div>
                 
-                {monday}
+                
            </div> 
            : 
            <p className="note-title">Add your first task </p>}
