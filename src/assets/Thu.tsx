@@ -83,7 +83,7 @@ export default function Home(){
   const Allday = selday.map(element => { 
   
 
-    return <li className={element.selected ? "day-btn-selected": "day-btn"} onClick={() => sel(element.id)}><Link  to={element.name === "Mon" ? "/day1" : ""} >{element.name}</Link></li>
+    return <li className={element.selected ? "day-btn-selected": "day-btn"} onClick={() => sel(element.id)}><Link  to="/day2">{element.name}</Link></li>
    });
     return (
         <>
