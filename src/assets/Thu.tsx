@@ -63,27 +63,10 @@ export default function Home(){
    
 
    
-   
-   
-   
-    const sel = (id:number | string) => {
-     let select:boolean 
-    
-     setselDay(ele => ele.map(elem => {
-        if(elem.selected === false) {
-            select = true
-        }
-        else {
-           
-        }
-        return elem.id === id ? {...elem , selected:select , } : {...elem , selected:false}
-     }))
-    }
-    
   const Allday = selday.map(element => { 
   
 
-    return <li className={element.selected ? "day-btn-selected": "day-btn"} onClick={() => sel(element.id)}><Link  to="/day2">{element.name}</Link></li>
+    return <li className={element.name === "Tue" ? "day-btn-selected": "day-btn"} ><Link  to={element.day}>{element.name}</Link></li>
    });
     return (
         <>

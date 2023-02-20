@@ -8,6 +8,7 @@ interface Task {
     time: number ;
     category: string;
     description: string;
+    checkBox : string ;
 }
 
 export default function Home(){
@@ -17,13 +18,15 @@ export default function Home(){
    
     const nameRef = useRef<HTMLInputElement>(null)    
     const timeRef = useRef<HTMLInputElement>(null)        
-    const descriptionRef = useRef<HTMLInputElement>(null)    
+    const descriptionRef = useRef<HTMLInputElement>(null) 
+    const checkRef = useRef<HTMLInputElement>(null)   
 
     const category1Ref = useRef<HTMLInputElement>(null) 
     const category2Ref = useRef<HTMLInputElement>(null) 
     const category3Ref = useRef<HTMLInputElement>(null) 
 
     const [data, setData] = useState([]);
+    const [checked , setChecked] = useState(false)
 
     useEffect(() => {
     localStorage.setItem('list', JSON.stringify(monday));
@@ -37,6 +40,7 @@ export default function Home(){
             const time = Number(timeRef.current?.value);
             let category = ''
             const description = String(descriptionRef.current?.value); 
+            let checkBox = ""
 
             if (category1Ref.current?.checked) {
                 category = 'Work'
@@ -46,44 +50,50 @@ export default function Home(){
                 category = 'Home'
             }
 
-        setMonday(
-            [ ...monday,   {
-                nameTask: nameTask,
-                time:   time,
-                category: category,
-                description: description,
-             },
-            ] )
-       
-        setFirstTask(true)
+            if (checkRef.current?.checked) {
+                checkBox = "true"
+            } else {
+                checkBox = ""
+            }
+            if (nameTask && time && category ) {
+                setMonday(
+                    [ ...monday,   {
+                        nameTask: nameTask,
+                        time:   time,
+                        category: category,
+                        description: description,
+                        checkBox: checkBox
+                     },
+                    ] )
+               
+                setFirstTask(true)
+            }
+            else {
+                alert("Fill all required fields")
+            }
+        
        
     }
-    
-   console.log(monday)
-   
+  
+   const Daydata = monday.map (element => {
+      
+    return (
+        <div className="data-cont">
+            <ul className={element.checkBox ? "data-oftasks-checked": "data-oftasks"}>
+                <li className="data-task-element"><span className="data-task-element-tag">Name : </span>{element.nameTask}</li>
+                <li className="data-task-element"><span className="data-task-element-tag">Category : </span>{element.category}</li>
+                <li className="data-task-element"><span className="data-task-element-tag">Time : </span>{element.time}</li>
+                <input type="checkbox"  ref={checkRef} name="checkBox" />
+            </ul>
+            
+        </div>
+    )
+   })
 
-   
-   
-   
-   
-    const sel = (id:number | string) => {
-     let select:boolean 
-    
-     setselDay(ele => ele.map(elem => {
-        if(elem.selected === false) {
-            select = true
-        }
-        else {
-           
-        }
-        return elem.id === id ? {...elem , selected:select , } : {...elem , selected:false}
-     }))
-    }
-    
   const Allday = selday.map(element => { 
   
 
-    return <li className={element.selected ? "day-btn-selected": "day-btn"} onClick={() => sel(element.id)}><Link  to={element.name === "Mon" ? "/day1" : ""} >{element.name}</Link></li>
+    return <li className={element.name === "Mon" ? "day-btn-selected": "day-btn"} ><Link  to={element.day} >{element.name}</Link></li>
    });
     return (
         <>
@@ -139,13 +149,10 @@ export default function Home(){
            { firstTask ? 
            <div>
                 <div className="note-category-cont">
-                    <p className="note-catergory-name">Task Name</p>
-                    <p className="note-catergory-name">Catergory</p>
-                    <p className="note-catergory-name">Time</p>
-                    
+                    <p className="note-catergory-name">Task List</p>
                 </div>
                 
-                
+                {Daydata}
            </div> 
            : 
            <p className="note-title">Add your first task </p>}

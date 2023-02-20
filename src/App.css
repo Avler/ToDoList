@@ -6,7 +6,7 @@
 }
 a {
   text-decoration: none;
-  color: rgb(32, 60, 61);
+  color: #fff;
  }
 .Cont {
   width: 100%;
@@ -32,7 +32,7 @@ a {
 .day-btn {
   text-decoration: none;
   background-color: rgb(38, 128, 131);
-  color: rgb(32, 60, 61);
+  color: #fff;
   font-family: Inter;
   width: 60px;
   height: 30px;
@@ -45,7 +45,7 @@ a {
 .day-btn-selected{
   background-color: rgb(165, 47, 0);
   text-decoration: none;
-  color: rgb(32, 60, 61);
+  color: #fff;
   font-family: Inter;
   width: 60px;
   height: 30px;
@@ -177,7 +177,7 @@ a {
   border: none;
   cursor: pointer;
   margin: auto;
-  color: rgb(32, 60, 61);
+  color: #fff;
   background-color: rgb(38, 128, 131);
 }
 .note-category-cont {
@@ -185,7 +185,42 @@ a {
   gap: 20px;
   justify-content: center;
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 35px;
   color: rgb(32, 60, 61);
   font-family: Inter;
 }
+.data-cont {
+  width: 100%;
+  padding: 10px 50px;
+  
+}
+.data-oftasks {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-self  : center;
+  background-color: rgb(38, 128, 131);
+  height: 40px;
+  border-radius: 5px;
+}
+.data-oftasks-checked {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-self  : center;
+  background-color: rgb(8, 122, 27);
+  height: 40px;
+  border-radius: 5px;
+}
+.data-task-element {
+  color: #fff;
+  gap: 22px;
+  display: flex;
+  
+  padding-top: 10px;
+  font-family: Inter;
+}
+.data-task-element-tag {
+  color: rgb(243, 132, 6);
+  font-family: Inter;
+  }
