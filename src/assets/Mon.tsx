@@ -2,6 +2,7 @@
 import { useState , useRef, useEffect} from "react"
 import {  Link} from "react-router-dom"
 import {Days} from "./Day1"
+import {nanoid} from "nanoid"
 
 interface Task {
     nameTask: string;
@@ -9,6 +10,7 @@ interface Task {
     category: string;
     description: string;
     checkBox : string ;
+    id : number | string ;
 }
 
 export default function Home(){
@@ -32,8 +34,23 @@ export default function Home(){
     localStorage.setItem('list', JSON.stringify(monday));
     }, [monday]);   
     
-    
-  
+    useEffect(() => {
+        const data = localStorage.getItem('list')
+        if (monday !== null) setMonday(JSON.parse(data))
+    }, [])
+
+    const checkComplited = (id: string | number) => {
+        let check = ""
+        setMonday(elem => elem.map(elm => {
+            if(elm.checkBox) {
+                check = ""
+            } else {
+                check = "true"
+            }
+            return elm.id === id ? {...elm , checkBox: check} : elm
+        }))
+     }
+  console.log(monday)
     const changeData = ()=> {  
           
             const nameTask =  String(nameRef.current?.value);
@@ -62,7 +79,8 @@ export default function Home(){
                         time:   time,
                         category: category,
                         description: description,
-                        checkBox: checkBox
+                        checkBox: checkBox,
+                        id: nanoid()
                      },
                     ] )
                
@@ -83,7 +101,7 @@ export default function Home(){
                 <li className="data-task-element"><span className="data-task-element-tag">Name : </span>{element.nameTask}</li>
                 <li className="data-task-element"><span className="data-task-element-tag">Category : </span>{element.category}</li>
                 <li className="data-task-element"><span className="data-task-element-tag">Time : </span>{element.time}</li>
-                <input type="checkbox"  ref={checkRef} name="checkBox" />
+                <input type="checkbox"  ref={checkRef} name="checkBox" onClick={() => checkComplited(element.id)}/>
             </ul>
             
         </div>

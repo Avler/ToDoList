@@ -76,6 +76,7 @@ a {
   height: 550px;
   background: linear-gradient(56deg, rgba(248,184,41) 0%, rgba(226,141,23,1) 100%);
   border-radius: 25px;
+  box-sizing: border-box;
 }
 .nav {
  width: 100%;
