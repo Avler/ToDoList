@@ -27,17 +27,27 @@ export default function Home(){
     const category2Ref = useRef<HTMLInputElement>(null) 
     const category3Ref = useRef<HTMLInputElement>(null) 
 
-    const [data, setData] = useState([]);
+    
     const [checked , setChecked] = useState(false)
+    
+        useEffect(() => {
+            const data = localStorage.getItem('list')
+           
+            if (data ) {
+                setMonday(JSON.parse(data))
+                 setFirstTask(true)
+                 console.log(monday)
+                }
+           
+        }, [])
+        
+   
 
     useEffect(() => {
     localStorage.setItem('list', JSON.stringify(monday));
     }, [monday]);   
     
-    useEffect(() => {
-        const data = localStorage.getItem('list')
-        if (monday !== null) setMonday(JSON.parse(data))
-    }, [])
+    console.log(monday)
 
     const checkComplited = (id: string | number) => {
         let check = ""
@@ -50,7 +60,7 @@ export default function Home(){
             return elm.id === id ? {...elm , checkBox: check} : elm
         }))
      }
-  console.log(monday)
+  
     const changeData = ()=> {  
           
             const nameTask =  String(nameRef.current?.value);
