@@ -28,18 +28,7 @@ export default function Home(){
     const category3Ref = useRef<HTMLInputElement>(null) 
 
     
-    const [checked , setChecked] = useState(false)
-    
-        useEffect(() => {
-            const data = localStorage.getItem('list')
-           
-            if (data ) {
-                setMonday(JSON.parse(data))
-                 setFirstTask(true)
-                 console.log(monday)
-                }
-           
-        }, [])
+       
         
    
 
