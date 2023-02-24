@@ -5,37 +5,10 @@ import {Days} from "./Day1"
 export default function Home(){
     const [selday , setselDay] = useState(Days)
 
-    
-   
-    let x:boolean 
-   selday.map(ele => x = ele.checked)
-   
-   const handleDay = () => {
-    if(x === true) {
-        return
-    }
-    else {
-
-    }
-   }
-   
-    const sel = (id:number | string) => {
-     let select:boolean 
-    
-     setselDay(ele => ele.map(elem => {
-        if(elem.selected === false) {
-            select = true
-        }
-        else {
-            select = false
-        }
-        return elem.id === id ? {...elem , selected:select , } : {...elem , selected:false}
-     }))
-    }
-
   const Allday = selday.map(element => { 
 
-    return <li className={element.selected ? "day-btn-selected": "day-btn"} onClick={() => sel(element.id)}><Link  to="/day1">{element.name}</Link></li>
+
+    return <li className="day-btn"><Link  to={element.day}>{element.name}</Link></li>
    });
     return (
         <>

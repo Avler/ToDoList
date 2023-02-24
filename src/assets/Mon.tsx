@@ -13,91 +13,103 @@ interface Task {
     id : number | string ;
 }
 
-export default function Home(){
-    const [selday , setselDay] = useState(Days)
-    const [firstTask , setFirstTask] = useState(false)
-    const [monday , setMonday] = useState<Task[]>([])
-   
-    const nameRef = useRef<HTMLInputElement>(null)    
-    const timeRef = useRef<HTMLInputElement>(null)        
-    const descriptionRef = useRef<HTMLInputElement>(null) 
-    const checkRef = useRef<HTMLInputElement>(null)   
-
-    const category1Ref = useRef<HTMLInputElement>(null) 
-    const category2Ref = useRef<HTMLInputElement>(null) 
-    const category3Ref = useRef<HTMLInputElement>(null) 
-
-    
-       
-        
-   
-
+export default function Monday() {
+    const [selday, setselDay] = useState(Days);
+    const [firstTask, setFirstTask] = useState(false);
+    const [monday, setMonday] = useState<Task[] | null>(null);
+  
+    const nameRef = useRef<HTMLInputElement>(null);
+    const timeRef = useRef<HTMLInputElement>(null);
+    const descriptionRef = useRef<HTMLInputElement>(null);
+    const checkRef = useRef<HTMLInputElement>(null);
+  
+    const category1Ref = useRef<HTMLInputElement>(null);
+    const category2Ref = useRef<HTMLInputElement>(null);
+    const category3Ref = useRef<HTMLInputElement>(null);
+  
     useEffect(() => {
-    localStorage.setItem('list', JSON.stringify(monday));
-    }, [monday]);   
+      const data = localStorage.getItem("list-monday");
+      if (data) {
+        setMonday(JSON.parse(data));
+        setFirstTask(true)
+      } else {
+        setMonday([]);
+        setFirstTask(false)
+      }
+    }, []);
+  
+    useEffect(() => {
+      if (monday !== null) {
+        localStorage.setItem("list-monday", JSON.stringify(monday));
+      }
+    }, [monday]);
     
-    console.log(monday)
-
     const checkComplited = (id: string | number) => {
-        let check = ""
-        setMonday(elem => elem.map(elm => {
-            if(elm.checkBox) {
-                check = ""
-            } else {
-                check = "true"
-            }
-            return elm.id === id ? {...elm , checkBox: check} : elm
-        }))
-     }
+      let check = "";
+      setMonday(elem =>
+        elem.map(elm => {
+          if (elm.checkBox) {
+            check = "";
+          } else {
+            check = "true";
+          }
+          return elm.id === id ? { ...elm, checkBox: check } : elm;
+        })
+      );
+    };
   
-    const changeData = ()=> {  
-          
-            const nameTask =  String(nameRef.current?.value);
-            const time = Number(timeRef.current?.value);
-            let category = ''
-            const description = String(descriptionRef.current?.value); 
-            let checkBox = ""
-
-            if (category1Ref.current?.checked) {
-                category = 'Work'
-            } else if (category2Ref.current?.checked) {
-                category = 'Hobby'
-            } else if (category3Ref.current?.checked) {
-                category = 'Home'
-            }
-
-            if (checkRef.current?.checked) {
-                checkBox = "true"
-            } else {
-                checkBox = ""
-            }
-            if (nameTask && time && category ) {
-                setMonday(
-                    [ ...monday,   {
-                        nameTask: nameTask,
-                        time:   time,
-                        category: category,
-                        description: description,
-                        checkBox: checkBox,
-                        id: nanoid()
-                     },
-                    ] )
-               
-                setFirstTask(true)
-            }
-            else {
-                alert("Fill all required fields")
-            }
-        
-       
-    }
+    const changeData = () => {
+      const nameTask = String(nameRef.current?.value);
+      const time = Number(timeRef.current?.value);
+      let category = "";
+      const description = String(descriptionRef.current?.value);
+      let checkBox = "";
   
-   const Daydata = monday.map (element => {
+      if (category1Ref.current?.checked) {
+        category = "Work";
+      } else if (category2Ref.current?.checked) {
+        category = "Hobby";
+      } else if (category3Ref.current?.checked) {
+        category = "Home";
+      }
+  
+      if (checkRef.current?.checked) {
+        checkBox = "true";
+      } else {
+        checkBox = "";
+      }
+
+      if (nameTask && time && category) {
+        const taskExists = monday?.some(
+          (task) => task.nameTask === nameTask && task.time === time && task.category === category
+        );
+        if (!taskExists) {
+          setMonday([
+            ...(monday || []),
+            {
+              nameTask: nameTask,
+              time: time,
+              category: category,
+              description: description,
+              checkBox: checkBox,
+              id: nanoid(),
+            },
+          ]);
+          setFirstTask(true);
+        } else {
+          alert("Task already exists");
+        }
+      } else {
+        alert("Fill all required fields");
+      }
+    };
+  
+   const Daydata = (monday || []).map(element => {
       
     return (
         <div className="data-cont">
-            <ul className={element.checkBox ? "data-oftasks-checked": "data-oftasks"}>
-                <li className="data-task-element"><span className="data-task-element-tag">Name : </span>{element.nameTask}</li>
+            <ul className={element.checkBox ? "data-oftasks-checked": "data-oftasks"} title={element.description}>
+                <li className="data-task-element" ><span className="data-task-element-tag">Name : </span>{element.nameTask}</li>
                 <li className="data-task-element"><span className="data-task-element-tag">Category : </span>{element.category}</li>
                 <li className="data-task-element"><span className="data-task-element-tag">Time : </span>{element.time}</li>
                 <input type="checkbox"  ref={checkRef} name="checkBox" onClick={() => checkComplited(element.id)}/>
@@ -108,8 +120,7 @@ export default function Home(){
    })
 
   const Allday = selday.map(element => { 
-  
-
+   
     return <li className={element.name === "Mon" ? "day-btn-selected": "day-btn"} ><Link  to={element.day} >{element.name}</Link></li>
    });
     return (

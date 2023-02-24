@@ -159,6 +159,7 @@ a {
   padding-left: 10px;
 }
 .text-area-task {
+
  width: 450px;
  outline: none;
  border: none;
@@ -166,10 +167,9 @@ a {
  margin-left: 50px;
  margin-top: 20px;
  padding-left: 10px;
- padding-top: 10px;
- justify-content: center;
  height: 100px;
  resize: none;
+ white-space: pre-wrap;
 }
 .task-btn{
   width: 140px;
