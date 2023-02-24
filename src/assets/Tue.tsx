@@ -103,8 +103,14 @@ export default function Tuesday() {
         alert("Fill all required fields");
       }
     };
-  
+        
+
    const Daydata = (tuesday || []).map(element => {
+    const  removeTask = (id: string | number) => {
+      let filterArray = tuesday?.filter(item => item.id !== id)
+      setTuesday(filterArray)
+      console.log("click")
+   }
       
     return (
         <div className="data-cont">
@@ -113,6 +119,7 @@ export default function Tuesday() {
                 <li className="data-task-element"><span className="data-task-element-tag">Category : </span>{element.category}</li>
                 <li className="data-task-element"><span className="data-task-element-tag">Time : </span>{element.time}</li>
                 <input type="checkbox"  ref={checkRef} name="checkBox" onClick={() => checkComplited(element.id)}/>
+                <img src="src\assets\trash2.svg" alt="trash" className="trash-icon" onClick={() => removeTask(element.id)}/>
             </ul>
             
         </div>
