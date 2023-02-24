@@ -101,6 +101,9 @@ a {
   padding-top: 40px;
   display: flex;
 }
+.trash-icon {
+  width: 28px;
+}
 .home-title {
   font-family: Inter;
   font-size: 45px;
@@ -192,7 +195,7 @@ a {
 }
 .data-cont {
   width: 100%;
-  padding: 10px 50px;
+  padding: 10px 20px;
   
 }
 .data-oftasks {

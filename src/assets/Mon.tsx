@@ -105,7 +105,11 @@ export default function Monday() {
     };
   
    const Daydata = (monday || []).map(element => {
-      
+    const  removeTask = (id: string | number) => {
+       let filterArray = monday?.filter(item => item.id !== id)
+       setMonday(filterArray)
+       console.log("click")
+    }
     return (
         <div className="data-cont">
             <ul className={element.checkBox ? "data-oftasks-checked": "data-oftasks"} title={element.description}>
@@ -113,6 +117,7 @@ export default function Monday() {
                 <li className="data-task-element"><span className="data-task-element-tag">Category : </span>{element.category}</li>
                 <li className="data-task-element"><span className="data-task-element-tag">Time : </span>{element.time}</li>
                 <input type="checkbox"  ref={checkRef} name="checkBox" onClick={() => checkComplited(element.id)}/>
+                <img src="src\assets\trash2.svg" alt="trash" className="trash-icon" onClick={() => removeTask(element.id)}/>
             </ul>
             
         </div>
