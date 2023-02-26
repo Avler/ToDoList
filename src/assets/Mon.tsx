@@ -9,7 +9,7 @@ interface Task {
     time: number ;
     category: string;
     description: string;
-    checkBox : string ;
+    checkBox : boolean;
     id : number | string ;
 }
 
@@ -45,25 +45,25 @@ export default function Monday() {
     }, [monday]);
     
     const checkComplited = (id: string | number) => {
-      let check = "";
+      let check 
       setMonday(elem =>
-        elem.map(elm => {
+        elem!.map(elm => {
           if (elm.checkBox) {
-            check = "";
+            check = false;
           } else {
-            check = "true";
+            check = true;
           }
           return elm.id === id ? { ...elm, checkBox: check } : elm;
         })
       );
     };
-  
+    
     const changeData = () => {
       const nameTask = String(nameRef.current?.value);
       const time = Number(timeRef.current?.value);
       let category = "";
       const description = String(descriptionRef.current?.value);
-      let checkBox = "";
+      let checkBox:boolean
   
       if (category1Ref.current?.checked) {
         category = "Work";
@@ -74,9 +74,9 @@ export default function Monday() {
       }
   
       if (checkRef.current?.checked) {
-        checkBox = "true";
+        checkBox = true;
       } else {
-        checkBox = "";
+        checkBox = false;
       }
 
       if (nameTask && time && category) {
@@ -107,7 +107,7 @@ export default function Monday() {
    const Daydata = (monday || []).map(element => {
     const  removeTask = (id: string | number) => {
        let filterArray = monday?.filter(item => item.id !== id)
-       setMonday(filterArray)
+       setMonday(filterArray!)
        console.log("click")
     }
     return (
@@ -116,7 +116,7 @@ export default function Monday() {
                 <li className="data-task-element" ><span className="data-task-element-tag">Name : </span>{element.nameTask}</li>
                 <li className="data-task-element"><span className="data-task-element-tag">Category : </span>{element.category}</li>
                 <li className="data-task-element"><span className="data-task-element-tag">Time : </span>{element.time}</li>
-                <input type="checkbox"  ref={checkRef} name="checkBox" onClick={() => checkComplited(element.id)}/>
+                <input type="checkbox"  ref={checkRef} name="checkBox" onClick={() => checkComplited(element.id)} checked={element.checkBox}/>
                 <img src="src\assets\trash2.svg" alt="trash" className="trash-icon" onClick={() => removeTask(element.id)}/>
             </ul>
             
