@@ -204,9 +204,9 @@ a {
   gap: 20px;
   justify-content: center;
   margin-top: 20px;
-  font-size: 35px;
+  font-size: 30px;
   color: rgb(32, 60, 61);
-  font-family: Inter;
+  font-family: Barlow;
 }
 .data-cont {
   width: 100%;
@@ -237,9 +237,9 @@ a {
   display: flex;
   
   padding-top: 10px;
-  font-family: Inter;
+  font-family: Barlow;
 }
 .data-task-element-tag {
   color: rgb(243, 132, 6);
-  font-family: Inter;
+  font-family: Barlow;;
   }
