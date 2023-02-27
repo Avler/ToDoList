@@ -3,6 +3,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box; 
+  font-family: Barlow , sans-serif;
 }
 a {
   text-decoration: none;
@@ -11,14 +12,15 @@ a {
 .Cont {
   width: 100%;
   height: 100vh;
-  background: url(C:\Users\A\Desktop\Nauka2\ToDoList\src\assets\bg.jpg);
+  background: url(C:\Users\A\Desktop\Nauka2\ToDoList\src\assets\bg2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 60px;
-  
+  background-repeat: no-repeat;
+
 }
 .day-links {
   display: flex;
@@ -33,7 +35,7 @@ a {
   text-decoration: none;
   background-color: rgb(38, 128, 131);
   color: #fff;
-  font-family: Inter;
+  font-family: Barlow;
   width: 60px;
   height: 30px;
   text-align: center;
@@ -46,7 +48,7 @@ a {
   background-color: rgb(165, 47, 0);
   text-decoration: none;
   color: #fff;
-  font-family: Inter;
+  font-family: Barlow;
   width: 60px;
   height: 30px;
   text-align: center;
@@ -60,7 +62,7 @@ a {
   height: 550px;
   background: linear-gradient(56deg, rgba(248,184,41) 0%, rgba(226,141,23,1) 100%);
   border-radius: 25px;
- 
+  opacity: 0.95;
   
 }
 .Main-Conteiner-Nav {
@@ -68,6 +70,7 @@ a {
   align-items: center;
   width: 100%;
   align-items: flex-start;
+  
 }
 .Main-Conteiner-note {
   display: flex;
@@ -77,24 +80,36 @@ a {
   background: linear-gradient(56deg, rgba(248,184,41) 0%, rgba(226,141,23,1) 100%);
   border-radius: 25px;
   box-sizing: border-box;
+  opacity: 0.95;
+  
 }
 .nav {
  width: 100%;
  align-items: flex-start;
 }
 .title {
-  font-family: Inter;
+  font-family: Barlow;
   padding-top: 1em;
   color: rgb(32, 60, 61);
   text-align: center;
+  font-weight: 400;
+  font-size: 30px;
 }
 .note-title {
-  font-family: Inter;
-  font-size: 45px;
+  font-family: Barlow;
+  font-size: 40px;
   color: rgb(32, 60, 61);
   text-align: center;
   height: 100%;
-  margin-top: 44%;
+  margin-top: 54%;
+}
+.note-category-cont{
+  font-family: Barlow;
+}
+.note-category-name {
+  font-family: Barlow;
+  font-weight: 400;
+  font-size: 30px;
 }
 .home {
   text-align: center;
@@ -105,7 +120,7 @@ a {
   width: 28px;
 }
 .home-title {
-  font-family: Inter;
+  font-family: Barlow;
   font-size: 45px;
   color: rgb(32, 60, 61);;
   padding-top: 150px;
