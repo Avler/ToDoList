@@ -1,22 +1,23 @@
 
 import { useState , useRef, useEffect} from "react"
 import {  Link} from "react-router-dom"
-import {Days} from "./Day1"
+import {Days} from "../Day1"
 import {nanoid} from "nanoid"
+
 
 interface Task {
     nameTask: string;
-    time: number ;
+    time: string ;
     category: string;
     description: string;
-    checkBox : boolean ;
+    checkBox : boolean;
     id : number | string ;
 }
 
-export default function Tuesday() {
+export default function Sunday() {
     const [selday, setselDay] = useState(Days);
     const [firstTask, setFirstTask] = useState(false);
-    const [tuesday, setTuesday] = useState<Task[] | null>(null);
+    const [sunday, setSunday] = useState<Task[] | null>(null);
   
     const nameRef = useRef<HTMLInputElement>(null);
     const timeRef = useRef<HTMLInputElement>(null);
@@ -28,25 +29,25 @@ export default function Tuesday() {
     const category3Ref = useRef<HTMLInputElement>(null);
   
     useEffect(() => {
-      const data = localStorage.getItem("list-tuesday");
+      const data = localStorage.getItem("list-sunday");
       if (data) {
-        setTuesday(JSON.parse(data));
+        setSunday(JSON.parse(data));
         setFirstTask(true)
       } else {
-        setTuesday([]);
+        setSunday([]);
         setFirstTask(false)
       }
     }, []);
   
     useEffect(() => {
-      if (tuesday !== null) {
-        localStorage.setItem("list-tuesday", JSON.stringify(tuesday));
+      if (sunday !== null) {
+        localStorage.setItem("list-sunday", JSON.stringify(sunday));
       }
-    }, [tuesday]);
+    }, [sunday]);
     
     const checkComplited = (id: string | number) => {
       let check 
-      setTuesday(elem =>
+      setSunday(elem =>
         elem!.map(elm => {
           if (elm.checkBox) {
             check = false;
@@ -57,13 +58,13 @@ export default function Tuesday() {
         })
       );
     };
-  
+    
     const changeData = () => {
       const nameTask = String(nameRef.current?.value);
-      const time = Number(timeRef.current?.value);
+      const time = String(timeRef.current?.value);
       let category = "";
       const description = String(descriptionRef.current?.value);
-      let checkBox:boolean;
+      let checkBox:boolean
   
       if (category1Ref.current?.checked) {
         category = "Work";
@@ -80,12 +81,12 @@ export default function Tuesday() {
       }
 
       if (nameTask && time && category) {
-        const taskExists = tuesday?.some(
+        const taskExists = sunday?.some(
           (task) => task.nameTask === nameTask && task.time === time && task.category === category
         );
         if (!taskExists) {
-          setTuesday([
-            ...(tuesday || []),
+          setSunday([
+            ...(sunday || []),
             {
               nameTask: nameTask,
               time: time,
@@ -103,16 +104,12 @@ export default function Tuesday() {
         alert("Fill all required fields");
       }
     };
-        
-
-   const Daydata = (tuesday || []).map(element => {
-    
+  
+   const Daydata = (sunday || []).map(element => {
     const  removeTask = (id: string | number) => {
-      let filterArray = tuesday?.filter(item => item.id !== id)
-      setTuesday(filterArray!)
-      console.log("click")
-   }
-      
+       let filterArray = sunday?.filter(item => item.id !== id)
+       setSunday(filterArray!)
+    }
     return (
         <div className="data-cont">
             <ul className={element.checkBox ? "data-oftasks-checked": "data-oftasks"} title={element.description}>
@@ -128,9 +125,8 @@ export default function Tuesday() {
    })
 
   const Allday = selday.map(element => { 
-    
-
-    return <li className={element.name === "Tue" ? "day-btn-selected": "day-btn"} ><Link  to={element.day} >{element.name}</Link></li>
+   
+    return <li className={element.name === "Sun" ? "day-btn-selected": "day-btn"} ><Link  to={element.day} >{element.name}</Link></li>
    });
     return (
         <>
@@ -152,7 +148,7 @@ export default function Tuesday() {
                 </div>
                 <div>
                     <p className="name-time">What time ?</p>
-                    <input type="number" className="time-input" ref={timeRef} placeholder="Time"/>
+                    <input type="time"  name="time" className="time-input" ref={timeRef} placeholder="Time"/>
                     
                 </div>
             </div>

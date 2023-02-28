@@ -1,7 +1,7 @@
 
 import { useState , useRef, useEffect} from "react"
 import {  Link} from "react-router-dom"
-import {Days} from "./Day1"
+import {Days} from "../Day1"
 import {nanoid} from "nanoid"
 
 
@@ -109,7 +109,6 @@ export default function Monday() {
     const  removeTask = (id: string | number) => {
        let filterArray = monday?.filter(item => item.id !== id)
        setMonday(filterArray!)
-       console.log("click")
     }
     return (
         <div className="data-cont">
