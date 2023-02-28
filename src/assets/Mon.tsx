@@ -4,9 +4,10 @@ import {  Link} from "react-router-dom"
 import {Days} from "./Day1"
 import {nanoid} from "nanoid"
 
+
 interface Task {
     nameTask: string;
-    time: number ;
+    time: string ;
     category: string;
     description: string;
     checkBox : boolean;
@@ -60,7 +61,7 @@ export default function Monday() {
     
     const changeData = () => {
       const nameTask = String(nameRef.current?.value);
-      const time = Number(timeRef.current?.value);
+      const time = String(timeRef.current?.value);
       let category = "";
       const description = String(descriptionRef.current?.value);
       let checkBox:boolean
@@ -148,7 +149,7 @@ export default function Monday() {
                 </div>
                 <div>
                     <p className="name-time">What time ?</p>
-                    <input type="number" className="time-input" ref={timeRef} placeholder="Time"/>
+                    <input type="time"  name="time" className="time-input" ref={timeRef} placeholder="Time"/>
                     
                 </div>
             </div>
